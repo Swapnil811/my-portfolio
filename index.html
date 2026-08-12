@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Swapnil Suryawanshi — Senior Software Engineer building cloud-native backend systems, Kubernetes platforms and distributed applications.">
+  <title>Swapnil Suryawanshi — Senior Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#080b10; --surface:#0e131a; --surface2:#111821;
+      --text:#e8edf3; --muted:#8995a3; --line:#202832;
+      --green:#79e2a0; --blue:#79b8ff; --orange:#ffbd72;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);font-family:Inter,sans-serif;
+      line-height:1.7;overflow-x:hidden;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:44px 44px;mask-image:linear-gradient(to bottom,#000,transparent 85%);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin:auto}
+    .mono{font-family:"DM Mono",monospace}
+    .green{color:var(--green)} .blue{color:var(--blue)} .orange{color:var(--orange)}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;width:100%;z-index:100;
+      background:rgba(8,11,16,.78);backdrop-filter:blur(14px);
+      border-bottom:1px solid transparent;transition:.25s;
+    }
+    nav.scrolled{border-color:var(--line)}
+    .nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:-.5px}.brand b{color:var(--green)}
+    .links{display:flex;gap:25px}
+    .links a{font-size:.82rem;color:var(--muted);font-weight:600}
+    .links a:hover,.links a.active{color:var(--text)}
+    .nav-cta{border:1px solid var(--line);padding:7px 12px;border-radius:7px;font-size:.78rem!important}
+    .nav-cta:hover{border-color:var(--green)}
+
+    /* HERO */
+    header{min-height:100vh;display:flex;align-items:center;padding:110px 0 70px}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+    .hero-identity{display:flex;align-items:center;gap:24px;margin-bottom:24px}
+    .hero-photo-wrap{display:flex;align-items:center;flex:0 0 auto}
+    .hero-photo{
+      width:112px;height:112px;border-radius:50%;padding:3px;
+      background:linear-gradient(145deg,var(--green),#315d49 55%,#18221e);
+      box-shadow:0 0 0 1px rgba(121,226,160,.12),0 18px 45px rgba(0,0,0,.28);
+    }
+    .photo-placeholder{
+      width:100%;height:100%;border-radius:50%;
+      background:radial-gradient(circle at 50% 35%,#1a242e,#0b1016 72%);
+      border:1px solid #202a34;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:#627181;font-family:"DM Mono",monospace;font-size:.55rem;letter-spacing:.5px;
+      overflow:hidden;
+    }
+    .photo-placeholder i{font-size:2.2rem;margin-bottom:7px;color:#465464}
+    .hero-photo img{
+      width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
+    }
+
+    .terminal-label{
+      display:inline-flex;gap:10px;align-items:center;color:var(--muted);
+      font-size:.78rem;margin-bottom:22px
+    }
+    .terminal-label:before{content:"$";color:var(--green);font-weight:bold}
+    h1{
+      font-size:clamp(3.3rem,7vw,6.5rem);line-height:.95;letter-spacing:-5px;
+      margin-bottom:24px;font-weight:800
+    }
+    .hero h1 span{color:var(--green)}
+    .headline{font-size:clamp(1.1rem,2vw,1.45rem);font-weight:600;color:#c5ced8;max-width:720px}
+    .intro{color:var(--muted);max-width:700px;margin:18px 0 30px;font-size:1rem}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border-radius:7px;
+      border:1px solid var(--line);font-weight:700;font-size:.84rem;transition:.2s
+    }
+    .btn.primary{background:var(--green);color:#07100a;border-color:var(--green)}
+    .btn:hover{transform:translateY(-2px);border-color:#3a4654}
+    .btn.primary:hover{box-shadow:0 10px 30px rgba(121,226,160,.15)}
+
+    .terminal{
+      border:1px solid var(--line);border-radius:12px;background:#0b1016;
+      box-shadow:0 25px 80px rgba(0,0,0,.35);overflow:hidden
+    }
+    .terminal-top{height:38px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 13px;gap:7px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#394451}
+    .terminal-title{margin-left:7px;color:#66727f;font-size:.7rem}
+    .terminal-body{padding:24px;font-family:"DM Mono",monospace;font-size:.78rem}
+    .prompt{color:var(--green)} .comment{color:#52606f}
+    .cmd{color:#d9e1ea}.output{color:#9caaba;margin:3px 0 14px;padding-left:15px}
+    .cursor{display:inline-block;width:7px;height:14px;background:var(--green);vertical-align:-2px;animation:blink 1s infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    /* SECTIONS */
+    section{padding:100px 0;border-top:1px solid rgba(255,255,255,.025)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px;gap:30px}
+    .section-no{font-family:"DM Mono";font-size:.72rem;color:var(--green)}
+    h2{font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-2px;line-height:1.1;margin-top:7px}
+    .section-head p{max-width:530px;color:var(--muted);font-size:.9rem}
+
+    /* ABOUT */
+    .about{display:grid;grid-template-columns:1.4fr .6fr;gap:22px}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px}
+    .about-copy{font-size:1.02rem;color:#b7c2ce}
+    .about-copy strong{color:var(--text)}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .stat{background:var(--surface2);border:1px solid var(--line);padding:20px;border-radius:8px}
+    .stat strong{font-size:1.6rem;display:block;color:var(--green);line-height:1.2}
+    .stat span{font-size:.72rem;color:var(--muted)}
+
+    /* SKILLS */
+    .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .skill h3{font-size:.9rem;margin-bottom:17px;color:#dce4ec}
+    .tags{display:flex;flex-wrap:wrap;gap:7px}
+    .tag{
+      border:1px solid var(--line);background:#0a0f15;border-radius:5px;
+      padding:6px 9px;font:400 .72rem "DM Mono";color:#9eabb9
+    }
+    .tag:hover{border-color:#3c4b5b;color:var(--green)}
+
+    /* EXPERIENCE */
+    .experience{display:grid;gap:18px}
+    .job{
+      background:var(--surface);border:1px solid var(--line);border-radius:10px;
+      padding:28px;position:relative
+    }
+    .job:hover{border-color:#303c49}
+    .job-top{display:flex;justify-content:space-between;gap:25px;margin-bottom:20px}
+    .job-role{font-size:1.2rem;font-weight:700}.job-company{color:var(--blue);font-size:.85rem;margin-top:3px}
+    .job-date{font:400 .72rem "DM Mono";color:var(--muted);white-space:nowrap}
+    .project{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+    .project-name{font-weight:700;font-size:.94rem}.tech{font:400 .68rem "DM Mono";color:var(--green);margin:4px 0 9px}
+    ul{padding-left:18px;color:#9eabb8;font-size:.83rem}
+    li{margin:5px 0}
+
+    /* ACHIEVEMENTS */
+    .impact{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .impact-card{background:var(--surface);border:1px solid var(--line);padding:24px;border-radius:9px}
+    .impact-number{font-size:2rem;font-weight:800;letter-spacing:-1px;color:var(--green)}
+    .impact-card h3{font-size:.85rem;margin:8px 0}
+    .impact-card p{font-size:.76rem;color:var(--muted)}
+
+    /* EDUCATION */
+    .edu{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .edu-card{background:var(--surface);border:1px solid var(--line);padding:24px;border-radius:9px}
+    .edu-card h3{font-size:1rem}.edu-card p{color:var(--muted);font-size:.82rem;margin-top:4px}
+
+    /* CONTACT */
+    .contact{
+      background:linear-gradient(135deg,#0d1815,#0e141b);
+      border:1px solid #1d3327;border-radius:12px;padding:45px;
+      display:flex;justify-content:space-between;align-items:center;gap:30px
+    }
+    .contact h2{max-width:600px}.contact p{color:var(--muted);margin-top:10px;max-width:600px}
+    .contact-links{display:flex;gap:10px;flex-wrap:wrap}
+    footer{border-top:1px solid var(--line);padding:25px 0;color:#65717e;font:400 .7rem "DM Mono"}
+    .footer{display:flex;justify-content:space-between;gap:20px}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:.65s ease}.reveal.show{opacity:1;transform:none}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}.terminal{display:none}
+      .about{grid-template-columns:1fr}.skill-grid{grid-template-columns:1fr 1fr}.impact{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:620px){
+      .hero-identity{gap:16px;margin-bottom:20px}
+      .hero-photo{width:82px;height:82px}
+      .wrap{width:calc(100% - 28px)}.links{gap:12px}.links a:nth-child(-n+3){display:none}
+      h1{letter-spacing:-3px}.section-head{display:block}.section-head p{margin-top:12px}
+      .skill-grid,.impact,.edu{grid-template-columns:1fr}.job-top{display:block}.job-date{display:block;margin-top:6px}
+      .contact{padding:28px;display:block}.contact-links{margin-top:22px}.footer{display:block}.footer span{display:block;margin-top:5px}
+    }
+  </style>
+</head>
+
+<body>
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#home" class="brand">Swapnil Suryawanshi<span class="green">.</span></a>
+    <div class="links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#experience">experience</a>
+      <a href="#impact">impact</a>
+      <a href="#contact" class="nav-cta">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="home">
+  <div class="wrap hero">
+    <div class="reveal">
+      <div class="hero-identity">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <!-- Production: replace this placeholder with
+               <img src="profile.jpg" alt="Swapnil Suryawanshi"> -->
+               <img src="swapnil.jpg" alt="Swapnil Suryawanshi">
+        </div>
+      </div>
+      <div>
+        <div class="terminal-label mono">senior-software-engineer</div>
+        <div class="mono" style="font-size:.72rem;color:#66727f;margin-top:-13px;">pune · india</div>
+      </div>
+    </div>
+    <h1>Building <span>systems</span><br>that scale.</h1>
+      <div class="headline">Golang · Kubernetes · Cloud Infrastructure · Distributed Systems</div>
+      <p class="intro">
+        Senior Software Engineer with 7+ years of experience designing cloud-native
+        backend systems, Kubernetes platforms, distributed applications and production
+        infrastructure.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="SwapnilResume2026V2.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Resume</a>
+        <a class="btn" href="https://github.com/swapnil811" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/swapnil811" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="terminal reveal">
+      <div class="terminal-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="terminal-title mono">swapnil@engineer:~</span></div>
+      <div class="terminal-body">
+        <div><span class="prompt">$</span> <span class="cmd">whoami</span></div>
+        <div class="output">Senior Software Engineer</div>
+        <div><span class="prompt">$</span> <span class="cmd">cat focus.txt</span></div>
+        <div class="output">cloud-native systems<br>kubernetes operators<br>distributed applications<br>backend engineering</div>
+        <div><span class="prompt">$</span> <span class="cmd">go version</span></div>
+        <div class="output">5+ years building with Golang</div>
+        <div><span class="prompt">$</span> <span class="cmd">./ship-production</span></div>
+        <div class="output">reliable systems: <span class="green">✓</span><br>tests: <span class="green">✓</span><br>observability: <span class="green">✓</span></div>
+        <span class="prompt">$</span> <span class="cursor"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="section-no">01 / ABOUT</div><h2>Engineer first.<br>Systems thinker.</h2></div>
+      <p>Focused on turning complex infrastructure and backend problems into maintainable production systems.</p>
+    </div>
+    <div class="about">
+      <div class="panel reveal">
+        <p class="about-copy">
+          I build <strong>cloud-native backend platforms</strong>, with strong experience in
+          Golang, Python, Kubernetes, cloud infrastructure, distributed systems and event-driven
+          architecture.
+          <br><br>
+          My work spans <strong>enterprise backup and disaster recovery</strong>, Kubernetes
+          Operators, high-performance APIs, SRE automation and ETL pipelines. At TrilioVault,
+          I have worked deeply with Operators, CRDs, controllers, admission webhooks, StatefulSets,
+          PVs, PVCs and CSI snapshots.
+          <br><br>
+          I value clean architecture, idiomatic code, automated testing, reliability and
+          understanding the trade-offs behind engineering decisions.
+        </p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><strong>7+</strong><span>YEARS EXPERIENCE</span></div>
+        <div class="stat"><strong>5+</strong><span>YEARS GOLANG</span></div>
+        <div class="stat"><strong>5+</strong><span>YEARS PYTHON</span></div>
+        <div class="stat"><strong>90%+</strong><span>API LATENCY REDUCTION</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="section-no">02 / STACK</div><h2>Technical toolkit.</h2></div>
+      <p>A practical stack built around backend engineering, Kubernetes and cloud infrastructure.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="panel skill reveal"><h3>LANGUAGES & BACKEND</h3><div class="tags">
+        <span class="tag">Golang</span><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Bash</span>
+        <span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">WebSockets</span><span class="tag">API Design</span>
+        <span class="tag">Middleware</span><span class="tag">Authentication</span>
+      </div></div>
+      <div class="panel skill reveal"><h3>KUBERNETES & CLOUD</h3><div class="tags">
+        <span class="tag">Kubernetes</span><span class="tag">Operators</span><span class="tag">CRDs</span><span class="tag">Controllers</span>
+        <span class="tag">Admission Webhooks</span><span class="tag">Kubebuilder</span><span class="tag">Helm</span><span class="tag">RBAC</span>
+        <span class="tag">CSI</span><span class="tag">OpenShift</span><span class="tag">EKS</span><span class="tag">GKE</span><span class="tag">Kops</span>
+      </div></div>
+      <div class="panel skill reveal"><h3>DATA, DEVOPS & TESTING</h3><div class="tags">
+        <span class="tag">PostgreSQL</span><span class="tag">Elasticsearch</span><span class="tag">MongoDB</span><span class="tag">Redis</span>
+        <span class="tag">RabbitMQ</span><span class="tag">Celery</span><span class="tag">Docker</span><span class="tag">Bazel</span>
+        <span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Ginkgo</span><span class="tag">E2E</span>
+        <span class="tag">Cursor</span><span class="tag">Claude</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="section-no">03 / EXPERIENCE</div><h2>Production engineering.</h2></div>
+      <p>Selected work across cloud platforms, enterprise Kubernetes and backend systems.</p>
+    </div>
+
+    <div class="experience">
+      <article class="job reveal">
+        <div class="job-top">
+          <div><div class="job-role">Senior Software Engineer</div><div class="job-company">Velotio Technologies Pvt. Ltd. · Now R Systems International Ltd.</div></div>
+          <div class="job-date">APR 2020 — PRESENT</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">TrilioVault — Cloud-native backup & disaster recovery</div>
+          <div class="tech">GOLANG · KUBERNETES · HELM · DOCKER · BAZEL · KUBEBUILDER · OCP · EKS · GKE</div>
+          <ul>
+            <li>Designed cloud-native backend services and high-performance RESTful APIs using Golang and go-restful.</li>
+            <li>Built Kubernetes Operators with CRDs and reconciliation loops for enterprise-scale backup and restore workflows.</li>
+            <li>Developed mutating and validating admission webhooks to enforce resource validation and configuration policies.</li>
+            <li>Implemented backup and disaster recovery workflows for stateful Kubernetes applications using StatefulSets, PVs, PVCs and CSI snapshots.</li>
+            <li>Built Cobra CLI plugins and WebSocket communication modules for operational workflows and real-time status updates.</li>
+            <li>Used goroutines, channels, contexts and concurrency patterns for efficient asynchronous processing pipelines.</li>
+            <li>Improved robustness through structured error handling, centralized logging, retry mechanisms and circuit-breaker patterns.</li>
+            <li>Authored unit, integration and E2E tests and resolved production issues across OpenShift, EKS, GKE and Kops.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-name">Sparrow — Manufacturing ERP platform</div>
+          <div class="tech">PYTHON · DJANGO · POSTGRESQL · AWS · REDIS · CELERY · RABBITMQ</div>
+          <ul>
+            <li>Developed Sales, Purchase, Logistics, Production and Finance modules.</li>
+            <li>Created REST APIs with DRF, JWT authentication, Swagger documentation and RBAC authorization.</li>
+            <li>Integrated third-party APIs and supported deployment cycles on AWS EC2.</li>
+            <li>Mentored new members and participated in Epic ownership, task breakdown and delivery tracking.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-name">MPL DevOps — SRE automation platform</div>
+          <div class="tech">PYTHON · BASH · AWS · ZOOKEEPER · ELASTALERT</div>
+          <ul>
+            <li>Built Python automation for recurring SRE workflows and centralized alert configuration using ZooKeeper.</li>
+            <li>Eliminated repetitive per-node configuration changes, saving SREs several hours per week.</li>
+          </ul>
+        </div>
+
+        <div class="project">
+          <div class="project-name">Sight Machine — Industrial analytics platform</div>
+          <div class="tech">GOLANG · PYTHON · MONGODB · POSTGRESQL · NUMPY · PANDAS</div>
+          <ul>
+            <li>Developed ETL pipelines ingesting industrial data from SQL databases, CSV, Excel and cloud storage.</li>
+            <li>Designed cleansing, validation, normalization and enrichment workflows for high-volume manufacturing datasets.</li>
+            <li>Built reusable data connectors and optimized ingestion into MongoDB.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal">
+        <div class="job-top">
+          <div><div class="job-role">Software Engineer</div><div class="job-company">Arham Technosoft Pvt. Ltd. · Ahmedabad, India</div></div>
+          <div class="job-date">APR 2019 — MAR 2020</div>
+        </div>
+        <div class="project">
+          <div class="project-name">Exchange Connect — Capital markets platform for NSE</div>
+          <div class="tech">PYTHON · DJANGO · FLASK · POSTGRESQL · ELASTICSEARCH · AWS · RABBITMQ · CELERY</div>
+          <ul>
+            <li>Developed and maintained RESTful APIs using Django REST Framework and Flask for corporates and investors.</li>
+            <li>Reduced average API response time from 30 seconds to under 3 seconds by migrating complex SQL queries to Elasticsearch.</li>
+            <li>Used Elasticsearch for full-text search APIs and built financial-news feeds by scraping and tagging relevant listed companies.</li>
+            <li>Optimized ORM queries and collaborated with frontend teams on API contracts and integration challenges.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="section-no">04 / IMPACT</div><h2>Numbers that tell the story.</h2></div>
+      <p>Highlights from the engineering work described in my resume.</p>
+    </div>
+    <div class="impact">
+      <div class="impact-card reveal"><div class="impact-number">90%+</div><h3>API latency reduction</h3><p>Reduced average response time from 30s to under 3s using Elasticsearch.</p></div>
+      <div class="impact-card reveal"><div class="impact-number">3</div><h3>Major Kubernetes clouds</h3><p>Production work across OpenShift, AWS EKS and Google GKE.</p></div>
+      <div class="impact-card reveal"><div class="impact-number">5+</div><h3>Years Golang</h3><p>Cloud-native backend services, Operators, APIs and concurrency-heavy systems.</p></div>
+      <div class="impact-card reveal"><div class="impact-number">7+</div><h3>Years engineering</h3><p>Backend, cloud infrastructure, automation and distributed systems experience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="section-no">05 / EDUCATION</div><h2>Foundation.</h2></div>
+    </div>
+    <div class="edu">
+      <div class="edu-card reveal"><h3>Bachelor of Engineering (B.E.)</h3><p>Savitribai Phule Pune University (Pune University)</p></div>
+      <div class="edu-card reveal"><h3>Amrutvahini College of Engineering</h3><p>Sangamner · 2013 — 2017</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div>
+        <div class="section-no">06 / CONTACT</div>
+        <h2>Have a hard engineering problem?</h2>
+        <p>I'm interested in backend engineering, cloud-native platforms, Kubernetes and distributed systems.</p>
+      </div>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:smskycs@gmail.com"><i class="fa-solid fa-envelope"></i> smskycs@gmail.com</a>
+        <a class="btn" href="tel:+918600755900"><i class="fa-solid fa-phone"></i> +91 86007 55900</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap footer"><span>© 2026 Swapnil Suryawanshi</span><span>Golang · Kubernetes · Cloud-native engineering</span></div></footer>
+
+<script>
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>30));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(e=>obs.observe(e));
+const links=document.querySelectorAll(".links a:not(.nav-cta)");
+const secs=[...document.querySelectorAll("section[id]")];
+window.addEventListener("scroll",()=>{
+  let current="";
+  secs.forEach(s=>{if(scrollY>=s.offsetTop-180)current=s.id});
+  links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+});
+</script>
+</body>
+</html>
